@@ -14,7 +14,7 @@ Trademarks: This software listing is packaged by Bitnami. The respective tradema
 helm install my-release oci://registry-1.docker.io/bitnamicharts/nginx
 ```
 
-Looking to use NGINX Open Source in production? Try [VMware Tanzu Application Catalog](https://bitnami.com/enterprise), the commercial edition of the Bitnami catalog.
+Looking to use NGINX Open Source in production? Try [VMware Tanzu Application Catalog](https://bitnami.com/enterprise), the enterprise edition of Bitnami Application Catalog.
 
 ## Introduction
 
@@ -81,7 +81,7 @@ cloneStaticSiteFromGit.branch=master
 
 This helm chart supports using custom custom server block for NGINX to use.
 
-You can use the `serverBlock` or `streamServerBlock` value to provide a custom server block for NGINX to use. To do this, create a values files with your server block and install the chart using it:
+You can use the `serverBlock` value to provide a custom server block for NGINX to use. To do this, create a values files with your server block and install the chart using it:
 
 ```yaml
 serverBlock: |-
@@ -195,8 +195,6 @@ For annotations, please see [this document](https://github.com/kubernetes/ingres
 | `affinity`                                          | Affinity for pod assignment                                                                                                                                                                                       | `{}`             |
 | `hostNetwork`                                       | Specify if host network should be enabled for NGINX pod                                                                                                                                                           | `false`          |
 | `hostIPC`                                           | Specify if host IPC should be enabled for NGINX pod                                                                                                                                                               | `false`          |
-| `dnsPolicy`                                         | Specifies the DNS policy for the NGINX pod                                                                                                                                                                        | `""`             |
-| `dnsConfig`                                         | Allows users more control on the DNS settings for a Pod. Required if `dnsPolicy` is set to `None`                                                                                                                 | `{}`             |
 | `nodeSelector`                                      | Node labels for pod assignment. Evaluated as a template.                                                                                                                                                          | `{}`             |
 | `tolerations`                                       | Tolerations for pod assignment. Evaluated as a template.                                                                                                                                                          | `[]`             |
 | `priorityClassName`                                 | NGINX pods' priorityClassName                                                                                                                                                                                     | `""`             |
@@ -296,9 +294,7 @@ For annotations, please see [this document](https://github.com/kubernetes/ingres
 | `cloneStaticSiteFromGit.extraEnvVarsSecret`      | Secret with extra environment variables                                                                                                                                                                                                                                         | `""`                  |
 | `cloneStaticSiteFromGit.extraVolumeMounts`       | Add extra volume mounts for the Git containers                                                                                                                                                                                                                                  | `[]`                  |
 | `serverBlock`                                    | Custom server block to be added to NGINX configuration                                                                                                                                                                                                                          | `""`                  |
-| `streamServerBlock`                              | Custom stream server block to be added to NGINX configuration                                                                                                                                                                                                                   | `""`                  |
 | `existingServerBlockConfigmap`                   | ConfigMap with custom server block to be added to NGINX configuration                                                                                                                                                                                                           | `""`                  |
-| `existingStreamServerBlockConfigmap`             | ConfigMap with custom stream server block to be added to NGINX configuration                                                                                                                                                                                                    | `""`                  |
 | `staticSiteConfigmap`                            | Name of existing ConfigMap with the server static site content                                                                                                                                                                                                                  | `""`                  |
 | `staticSitePVC`                                  | Name of existing PVC with the server static site content                                                                                                                                                                                                                        | `""`                  |
 

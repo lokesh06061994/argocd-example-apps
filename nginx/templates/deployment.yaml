@@ -36,9 +36,6 @@ spec:
         {{- if and .Values.serverBlock (not .Values.existingServerBlockConfigmap) }}
         checksum/server-block-configuration: {{ include (print $.Template.BasePath "/server-block-configmap.yaml") . | sha256sum }}
         {{- end }}
-        {{- if and .Values.streamServerBlock (not .Values.existingServerBlockConfigmap) }}
-        checksum/stream-server-block-configuration: {{ include (print $.Template.BasePath "/stream-server-block-configmap.yaml") . | sha256sum }}
-        {{- end }}
     spec:
       {{- include "nginx.imagePullSecrets" . | nindent 6 }}
       shareProcessNamespace: {{ .Values.sidecarSingleProcessNamespace }}
@@ -56,12 +53,6 @@ spec:
         nodeAffinity: {{- include "common.affinities.nodes" (dict "type" .Values.nodeAffinityPreset.type "key" .Values.nodeAffinityPreset.key "values" .Values.nodeAffinityPreset.values) | nindent 10 }}
       {{- end }}
       hostNetwork: {{ .Values.hostNetwork }}
-      {{- if .Values.dnsPolicy  }}
-      dnsPolicy: {{ .Values.dnsPolicy }}
-      {{- end }}
-      {{- if .Values.dnsConfig }}
-      dnsConfig: {{- include "common.tplvalues.render" (dict "value" .Values.dnsConfig "context" $) | nindent 8 }}
-      {{- end }}
       hostIPC: {{ .Values.hostIPC }}
       {{- if .Values.priorityClassName }}
       priorityClassName: {{ .Values.priorityClassName | quote }}
@@ -84,7 +75,6 @@ spec:
       {{- if .Values.terminationGracePeriodSeconds }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
       {{- end }}
-      {{- if .Values.containerSecurityContext.readOnlyRootFilesystem }}
       initContainers:
         - name: preserve-logs-symlinks
           image: {{ include "nginx.image" . }}
@@ -111,7 +101,6 @@ spec:
           volumeMounts:
             - name: empty-dir
               mountPath: /emptydir
-      {{- end }}        
       {{- if or .Values.cloneStaticSiteFromGit.enabled .Values.initContainers }}
         {{- if .Values.cloneStaticSiteFromGit.enabled }}
         - name: git-clone-repository
@@ -245,10 +234,6 @@ spec:
             - name: NGINX_HTTPS_PORT_NUMBER
               value: {{ .Values.containerPorts.https | quote }}
             {{- end }}
-            {{- if or .Values.streamServerBlock .Values.existingStreamServerBlockConfigmap }}
-            - name: NGINX_ENABLE_STREAM
-              value: "true"
-            {{- end }}
             {{- if .Values.extraEnvVars }}
             {{- include "common.tplvalues.render" (dict "value" .Values.extraEnvVars "context" $) | nindent 12 }}
             {{- end }}
@@ -318,10 +303,6 @@ spec:
             {{- if or .Values.serverBlock .Values.existingServerBlockConfigmap }}
             - name: nginx-server-block
               mountPath: /opt/bitnami/nginx/conf/server_blocks
-            {{- end }}
-            {{- if or .Values.streamServerBlock .Values.existingStreamServerBlockConfigmap }}
-            - name: nginx-stream-server-block
-              mountPath: /opt/bitnami/nginx/conf/stream_server_blocks
             {{- end }}
             {{- if (include "nginx.useStaticSite" .) }}
             - name: staticsite
@@ -400,11 +381,6 @@ spec:
         - name: nginx-server-block
           configMap:
             name: {{ include "nginx.serverBlockConfigmapName" . }}
-        {{- end }}
-        {{- if or .Values.streamServerBlock .Values.existingStreamServerBlockConfigmap }}
-        - name: nginx-stream-server-block
-          configMap:
-            name: {{ include "nginx.streamServerBlockConfigmapName" . }}
         {{- end }}
         {{- if (include "nginx.useStaticSite" .) }}
         - name: staticsite
