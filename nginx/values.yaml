@@ -758,6 +758,11 @@ ingress:
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:508714954883:certificate/4164c373-e77d-44b2-865c-03823a314bf7s
     alb.ingress.kubernetes.io/scheme: internal
     alb.ingress.kubernetes.io/subnets: subnet-05d6f126ab87a684b,subnet-0e4247986ced1aabb,subnet-0526536f53e510757
+  backend:
+    service:
+      name: nginx-app
+      port:
+        number: 80
   ## @param ingress.ingressClassName Set the ingerssClassName on the ingress record for k8s 1.18+
   ## This is supported in Kubernetes 1.18+ and required if you have more than one IngressClass marked as the default for your cluster .
   ## ref: https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/
