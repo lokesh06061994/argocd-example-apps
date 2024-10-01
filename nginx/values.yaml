@@ -752,6 +752,10 @@ ingress:
   ##   cert-manager.io/cluster-issuer: cluster-issuer-name
   ##
   annotations:
+    alb.ingress.kubernetes.io/actions.ssl-redirect: '443'
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/security-groups: sg-01d7aca4bbc8575a5
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:508714954883:certificate/4164c373-e77d-44b2-865c-03823a314bf7s
     alb.ingress.kubernetes.io/scheme: internal
     alb.ingress.kubernetes.io/subnets: subnet-05d6f126ab87a684b,subnet-0e4247986ced1aabb,subnet-0526536f53e510757
   ## @param ingress.ingressClassName Set the ingerssClassName on the ingress record for k8s 1.18+
