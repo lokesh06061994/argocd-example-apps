@@ -782,8 +782,8 @@ ingress:
   ##   cert-manager.io/cluster-issuer: cluster-issuer-name
   ##
   annotations:
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/subnets: subnet-09944771983785676,subnet-024459055d178fc68,subnet-00038ac5bfbae3755
+    alb.ingress.kubernetes.io/scheme: internal
+    alb.ingress.kubernetes.io/subnets: subnet-05d6f126ab87a684b,subnet-0e4247986ced1aabb,subnet-0526536f53e510757
 
   ## @param ingress.ingressClassName Set the ingerssClassName on the ingress record for k8s 1.18+
   ## This is supported in Kubernetes 1.18+ and required if you have more than one IngressClass marked as the default for your cluster .
