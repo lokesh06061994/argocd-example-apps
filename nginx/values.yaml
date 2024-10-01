@@ -648,7 +648,7 @@ service:
   ## Example: Mapping the https listener to targetPort http [http: https]
   ##
   targetPort:
-    http: http
+    http: 8080
   ## @param service.clusterIP NGINX service Cluster IP
   ## e.g.:
   ## clusterIP: None
