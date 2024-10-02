@@ -42,7 +42,7 @@ ingress:
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:707026380822:certificate/666bff45-376c-4cf0-ba3c-21a421c7d81b
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
     alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/security-groups: sg-07abc4859cbdb9056
+    alb.ingress.kubernetes.io/security-groups: sg-0f4b6114ddf2f18b9
     alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-FS-1-2-Res-2020-10
     alb.ingress.kubernetes.io/subnets: subnet-05b53f161207229b3,subnet-09f9575888538eee9,subnet-04caed2cb971f31b6
     alb.ingress.kubernetes.io/success-codes: 200,202,204,404
