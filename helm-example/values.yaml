@@ -46,9 +46,9 @@ ingress:
     alb.ingress.kubernetes.io/subnets: subnet-05b53f161207229b3,subnet-09f9575888538eee9,subnet-04caed2cb971f31b6
     alb.ingress.kubernetes.io/success-codes: 200-299
     alb.ingress.kubernetes.io/target-type: ip
-    external-dns.alpha.kubernetes.io/hostname: 'example.dev.automationanywhere.digital'
+    external-dns.alpha.kubernetes.io/hostname: 'test-app.dev.automationanywhere.digital'
   hosts:
-    - host: example.dev.automationanywhere.digital
+    - host: test-app.dev.automationanywhere.digital
       paths: 
        - path: /
 
