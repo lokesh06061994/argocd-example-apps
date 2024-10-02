@@ -48,7 +48,8 @@ ingress:
     alb.ingress.kubernetes.io/target-type: ip
     external-dns.alpha.kubernetes.io/hostname: '*.dev.automationanywhere.digital'
   hosts:
-    - paths: 
+    - host: example..dev.automationanywhere.digital
+      paths: 
        - path: /
 
   tls: []
