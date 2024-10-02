@@ -35,6 +35,7 @@ service:
   port: 80
 
 ingress:
+  ingressClassName: alb
   enabled: false
   annotations: 
     alb.ingress.kubernetes.io/actions.ssl-redirect: "443"
