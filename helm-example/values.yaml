@@ -36,14 +36,27 @@ service:
 
 ingress:
   enabled: false
-  annotations: {}
+  annotations: 
+    alb.ingress.kubernetes.io/actions.ssl-redirect: "443"
+    alb.ingress.kubernetes.io/backend-protocol: HTTP
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:707026380822:certificate/666bff45-376c-4cf0-ba3c-21a421c7d81b
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/security-groups: sg-07abc4859cbdb9056
+    alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-FS-1-2-Res-2020-10
+    alb.ingress.kubernetes.io/subnets: subnet-05b53f161207229b3,subnet-09f9575888538eee9,subnet-04caed2cb971f31b6
+    alb.ingress.kubernetes.io/success-codes: 200,202,204,404
+    alb.ingress.kubernetes.io/target-type: ip
+    external-dns.alpha.kubernetes.io/hostname: '*.dev.automationanywhere.digital'
+    kubernetes.io/ingress.class: alb
+
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: chart-example.local
+    - host: example..dev.automationanywhere.digital
       paths: 
        - path: /
-       
+
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
