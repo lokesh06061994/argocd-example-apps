@@ -44,7 +44,7 @@ ingress:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/security-groups: sg-0202b4de2e4ab0de3
     alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-FS-1-2-Res-2020-10
-    alb.ingress.kubernetes.io/subnets: subnet-06825a32f8ecb019a,subnet-0d35f6c571100a75b,subnet-0ee8b8a8c5fabeb59
+    alb.ingress.kubernetes.io/subnets: subnet-0ee8b8a8c5fabeb59,subnet-0d35f6c571100a75b,subnet-06825a32f8ecb019a
     alb.ingress.kubernetes.io/success-codes: 200-299
     alb.ingress.kubernetes.io/target-type: ip
     external-dns.alpha.kubernetes.io/hostname: 'helm-example-app.stage-ee.rpaworker.com'
